@@ -1,0 +1,7 @@
+organization=manwatse-github
+projectKey=manwatse_TheMindFront
+serverUrl=https://sonarcloud.io
+serverVersion=7.8.0.25269
+dashboardUrl=https://sonarcloud.io/dashboard?id=manwatse_TheMindFront
+ceTaskId=AWsDAPdyMzya1zTq_8y4
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWsDAPdyMzya1zTq_8y4

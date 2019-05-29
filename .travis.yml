@@ -6,14 +6,19 @@
   branches:
   only:
   - master
+  addons:
+    sonarcloud:
+      organization: "manwatse-github" # the key of the org you chose at step #3
+      token:
+        secure: "f0337c8e09eec73d2e15f0840e02e5353412a482" # encrypted value of your token
 
   before_script:
     - npm install -g firebase-tools
-    - npm install -g @angular/cli
     - npm install -g firebase @angular/fire
 
   script:
     - ng build
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 
   after_success:
     - firebase deploy --token $FIREBASE_TOKEN

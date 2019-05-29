@@ -1,0 +1,3 @@
+sonar-scanner.bat -D"sonar.projectKey=manwatse_TheMindFront" -D"sonar.organization=manwatse-github" -D"sonar.sources=." -D"sonar.host.url=https://sonarcloud.io" -D"sonar.login=f0337c8e09eec73d2e15f0840e02e5353412a482"
+
+sonar-scanner.bat -D"sonar.projectKey=TheMindFront" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=f0337c8e09eec73d2e15f0840e02e5353412a482"
