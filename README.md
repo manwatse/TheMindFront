@@ -17,9 +17,6 @@ Step by step article on [Full Angular 7 Firebase Authentication System](https://
 
 
 
-**If you love this project then show your love by simply sharing this repo with others and don't forget to put a GitHub star ⭐ ! Thanks** :pray:
-
-
 
 ## Technologies used
 - Node 8.11.1
