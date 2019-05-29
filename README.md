@@ -6,7 +6,6 @@ Step by step article on [Full Angular 7 Firebase Authentication System](https://
 
 
 - Sign in with Google
-- Sign in with Facebook
 - Sign in with username/password
 - Sign up with username/password
 - Recover forget password
@@ -16,9 +15,6 @@ Step by step article on [Full Angular 7 Firebase Authentication System](https://
 - Prevent user to access sign in and sign up components when a user is already logged in
 - Save user data to localstorage when user is logged in
 
-
-
-**If you love this project then show your love by simply sharing this repo with others and don't forget to put a GitHub star ⭐ ! Thanks** :pray:
 
 
 
