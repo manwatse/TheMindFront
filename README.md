@@ -6,7 +6,6 @@ Step by step article on [Full Angular 7 Firebase Authentication System](https://
 
 
 - Sign in with Google
-- Sign in with Facebook
 - Sign in with username/password
 - Sign up with username/password
 - Recover forget password
