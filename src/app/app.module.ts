@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Reactive Form
@@ -42,7 +42,7 @@ import { AuthService } from './shared/services/auth.service';
     AngularFirestoreModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, Title],
   bootstrap: [AppComponent]
 })
 
