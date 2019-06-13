@@ -1,0 +1,56 @@
+<!-- Top-->
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+
+    <span class="dasboard-text">Highscore</span>
+  </a>
+</nav>
+
+<!-- Sidebar-->
+<div class="container-fluid">
+  <div class="row">
+
+    <nav class="col-md-2 d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard" >
+              <i class="fas fa-user"></i>User Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/highscore" >
+              <i class="fas fa-user"></i>Highscore
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/que" >
+              <i class="fas fa-user"></i>Queue
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/game" >
+              <i class="fas fa-user"></i>Game
+            </a>
+          </li>
+          <!-- Calling SignOut() Api from AuthService -->
+          <li class="nav-item">
+            <a class="nav-link" (click)="authService.SignOut()">
+              <i class="fas fa-sign-out-alt"></i>Log out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main  -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="inner-adjust">
+
+
+
+      </div>
+    </main>
+
+  </div>
+</div>

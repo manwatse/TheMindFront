@@ -23,9 +23,11 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from './shared/services/auth.service';
-import { WebsockettestComponent } from './components/websockettest/websockettest.component';
 import {WebsocketService} from './shared/services/websocket/websocket.service';
 import {GameSocketService} from './shared/services/gameSocket/game-socket.service';
+import { QueComponent } from './components/que/que.component';
+import { HighscoreComponent } from './components/highscore/highscore.component';
+import { GameboardComponent } from './components/gameboard/gameboard.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import {GameSocketService} from './shared/services/gameSocket/game-socket.servic
     DashboardComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    WebsockettestComponent
+    QueComponent,
+    HighscoreComponent,
+    GameboardComponent
   ],
   imports: [
     BrowserModule,

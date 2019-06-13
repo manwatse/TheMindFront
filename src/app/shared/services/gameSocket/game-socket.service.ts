@@ -5,11 +5,12 @@ import {EncapsulatingMessage} from '../../messages/EncapsulatingMessage';
 import {WebsocketService} from '../websocket/websocket.service';
 import {MessageConnectUser} from '../../messages/MessageConnectUser';
 
+const CHAT_URL = 'ws://localhost:8095/the-mind/websocket/';
 @Injectable({
   providedIn: 'root'
 })
 
-const CHAT_URL = 'ws://localhost:8095/the-mind/websocket/';
+
 export class GameSocketService {
 
     public messages: Subject<EncapsulatingMessage>;

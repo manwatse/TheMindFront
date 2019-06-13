@@ -1,6 +1,6 @@
-export class Score{
+export class PlayerScore{
     private playerId:string;
-    private score:number;
+    private playerscore:number;
 
     constructor(obj) {
         for (var prop in obj) this[prop] = obj[prop];
@@ -11,7 +11,7 @@ export class Score{
     }
 
     get score():number{
-        return this.score;
+        return this.playerscore;
     }
 
 }
