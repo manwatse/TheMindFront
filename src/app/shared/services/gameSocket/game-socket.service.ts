@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import {EncapsulatingMessage} from '../../messages/EncapsulatingMessage';
 import {Subject} from 'rxjs';
-import 'rxjs/Rx';
-import 'rxjs/add/operator/map'
+import { map, filter, catchError, mergeMap } from 'rxjs/operators';
+import {EncapsulatingMessage} from '../../messages/EncapsulatingMessage';
 import {WebsocketService} from '../websocket/websocket.service';
 import {MessageConnectUser} from '../../messages/MessageConnectUser';
 
@@ -25,11 +24,11 @@ export class GameSocketService {
       };
       console.log("new order service")
       this.messages = new Subject<EncapsulatingMessage>();
-      this.messages = <Subject<EncapsulatingMessage>>this.ws.connect(CHAT_URL)
-          .map((response: MessageEvent): EncapsulatingMessage => {
-              let msg = new EncapsulatingMessage(JSON.parse(response.data));
-              return msg;
-          });
+      this.messages = <Subject<EncapsulatingMessage>>this.ws.connect(CHAT_URL).pipe
+      (map((response: MessageEvent): EncapsulatingMessage => {
+          let msg = new EncapsulatingMessage(JSON.parse(response.data));
+          return msg;
+      }));
       setInterval(function () {
           console.log('ping order');
           let obj = new MessageConnectUser();
