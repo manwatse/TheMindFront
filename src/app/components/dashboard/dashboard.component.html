@@ -23,16 +23,7 @@
                             <i class="fas fa-user"></i>Highscore
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/que" >
-                            <i class="fas fa-user"></i>Queue
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" routerLink="/game" >
-                            <i class="fas fa-user"></i>Game
-                        </a>
-                    </li>
+
                     <!-- Calling SignOut() Api from AuthService -->
                     <li class="nav-item">
                         <a class="nav-link" (click)="authService.SignOut()">
@@ -66,6 +57,11 @@
                         </div>
                     </div>
                 </div>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/que" >
+                        <i class="fas fa-user"></i>Game
+                    </a>
+                </li>
 
             </div>
         </main>
