@@ -1,46 +1,77 @@
 <!-- Top-->
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0">
 
-    <span class="dasboard-text">Game</span>
-  </a>
+        <span class="dasboard-text">Game</span>
+    </a>
 </nav>
 
 <!-- Sidebar-->
 <div class="container-fluid">
-  <div class="row">
+    <div class="row">
 
-    <nav class="col-md-2 d-md-block bg-light sidebar">
-      <div class="sidebar-sticky">
-        <ul class="nav flex-column">
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/dashboard" >
-              <i class="fas fa-user"></i>User Profile
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/highscore" >
-              <i class="fas fa-user"></i>Highscore
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/que" >
-              <i class="fas fa-user"></i>Queue
-            </a>
-          </li>
+        <nav class="col-md-2 d-md-block bg-light sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="/dashboard">
+                            <i class="fas fa-user"></i>User Profile
+                        </a>
+                    </li>
 
-        </ul>
-      </div>
-    </nav>
+                </ul>
+            </div>
+        </nav>
 
-    <!-- Main  -->
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-      <div class="inner-adjust">
+        <!-- Main  -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="inner-adjust">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <tbody *ngIf="players != null">
+                                    <tr *ngFor="let Player of players">
+                                        <div class="col-sm-70" flex style="height: 20px;margin-bottom: 5px;">PlayerId:
+                                            {{ Player.id}}
+                                        </div>
+
+                                        <div class="col-sm-70" flex style="height: 20px;margin-bottom: 5px;">Amount of
+                                            cards: {{Player.cards.length}}
+                                        </div>
+                                    </tr>
+                                    <div class="col-sm-70" flex style="height: 20px;margin-bottom: 5px;">Votes:
+                                        {{game.votes}}
+                                    </div>
+                                    </tbody>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="rounded-sm" alt="100x100"><p style="font-size:90px;text-align: center;vertical-align: middle;">
+                                        {{lastPlayed}}</p></div>
+
+                                </div>
+                                <div class="col-md-2">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10">
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="inner-adjust">
+                                        <li class="nav-item">
+                                            <button class="btn btn-primary" (click)="playCard()" style="height: 90px"> Play card</button>
+                                        </li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
+            </div>
+        </main>
 
-      </div>
-    </main>
-
-  </div>
+    </div>
 </div>

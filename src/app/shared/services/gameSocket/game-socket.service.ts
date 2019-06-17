@@ -37,10 +37,11 @@ export class GameSocketService {
       // }, 10000);
   }
     sendMsg(msg: object) {
-      console.log("Message send")
+
         let message = new EncapsulatingMessage(null);
         message.setMessageType = msg.constructor.name;
         message.setMessageData = JSON.stringify(msg);
         this.messages.next(message);
+        console.log("Message send")
     }
 }

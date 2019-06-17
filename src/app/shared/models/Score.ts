@@ -1,17 +1,26 @@
 export class PlayerScore{
-    private playerId:string;
-    private playerscore:number;
+    public _playerId:string;
+    private _playerscore:number;
 
     constructor(obj) {
-        for (var prop in obj) this[prop] = obj[prop];
+        for (var prop in obj) this[prop] = obj[prop]
     }
 
-    get playerid():string{
-        return this.playerId;
+
+    get playerId(): string {
+        return this._playerId;
     }
 
-    get score():number{
-        return this.playerscore;
+    set playerId(value: string) {
+        this._playerId = value;
     }
 
+
+    get playerscore(): number {
+        return this._playerscore;
+    }
+
+    set playerscore(value: number) {
+        this._playerscore = value;
+    }
 }
