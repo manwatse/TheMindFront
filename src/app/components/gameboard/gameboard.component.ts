@@ -1,35 +1,37 @@
 import {Component, OnInit} from '@angular/core';
-import {GameSocketService} from '../../shared/services/gameSocket/game-socket.service';
+
 import {AuthService} from '../../shared/services/authenticate/auth.service';
 import {Router} from '@angular/router';
 import {GameServiceService} from '../../shared/services/gameservice/game-service.service';
 import {Player} from '../../shared/models/Player';
 
-import {forEach} from '@angular/router/src/utils/collection';
-import {MessagePlayerInQueue} from '../../shared/messages/MessagePlayerInQueue';
-import {MessageUpdateque} from '../../shared/messages/MessageUpdateque';
-import {MessageGameStarted} from '../../shared/messages/MessageGameStarted';
-import {MessagePlayerJoinQueue} from '../../shared/messages/MessagePlayerJoinQueue';
-import {MessageCardPlayed} from '../../shared/messages/MessageCardPlayed';
 import {MessageUpdateGame} from '../../shared/messages/MessageUpdateGame';
+import {Subject} from '../../shared/services/observer/Subject';
+import {EncapsulatingMessage} from '../../shared/messages/EncapsulatingMessage';
+import {Observer} from '../../shared/services/observer/Observer';
+import {MessageCardPlayed} from '../../shared/messages/MessageCardPlayed';
+import {WebsocketService} from '../../shared/services/websocket/websocket.service';
 
 @Component({
     selector: 'app-gameboard',
     templateUrl: './gameboard.component.html',
     styleUrls: ['./gameboard.component.css']
 })
-export class GameboardComponent implements OnInit {
+export class GameboardComponent implements OnInit,Observer {
     private message;
+    private encapsulatingMessage:EncapsulatingMessage;
+    private subject:Subject;
     players: Player[] = [];
     hand:number[]=[];
     lastPlayed: number;
     votes: number;
 
 
-    constructor(private ws: GameSocketService, private auth: AuthService, public router: Router, public game: GameServiceService) {
-        this.ws.messages.subscribe(msg => {
-            this.switchComponent(msg);
-        });
+    constructor(private ws: WebsocketService,private auth:AuthService,public router: Router,public game:GameServiceService) {
+        this.subject=ws;
+        ws.registerObserver(this)
+
+
     }
 
     ngOnInit() {
@@ -47,13 +49,19 @@ export class GameboardComponent implements OnInit {
 
     }
 
+    update(message: EncapsulatingMessage) {
+        let encapsulatingMessage= message;
+        this.encapsulatingMessage=encapsulatingMessage
+        this.switchComponent(this.encapsulatingMessage)
+    }
+
     switchComponent(msg) {
         switch (msg.getMessageType) {
             case 'UpdateGame':
                 this.message = new MessageUpdateGame(JSON.parse(msg.getMessageData));
                     this.updateService(this.message);
                     this.updateGame();
-                    console.log(this.message.lastPlayed)
+
 
                 break;
 
@@ -63,9 +71,9 @@ export class GameboardComponent implements OnInit {
         }
     }
     playCard(){
-        let message = new MessageCardPlayed(this.auth.user.uid,this.hand[this.hand.length]);
+        let message = new MessageCardPlayed(this.auth.user.uid,this.hand.pop());
         console.log(this.hand[this.hand.length]);
-        this.ws.sendMsg(message);
+        this.ws.send(message);
 
     }
 
@@ -81,7 +89,11 @@ export class GameboardComponent implements OnInit {
         this.game.lastPlayeds= message.lastPlayed;
         this.game.lifePoints=message.lifePoints;
 
+        console.log(this.message.lastPlayed)
+
     }
+
+
 
 
 

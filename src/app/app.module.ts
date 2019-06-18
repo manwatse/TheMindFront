@@ -27,7 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
 // Auth service
 import {AuthService} from './shared/services/authenticate/auth.service';
 import {WebsocketService} from './shared/services/websocket/websocket.service';
-import {GameSocketService} from './shared/services/gameSocket/game-socket.service';
 import {QueComponent} from './components/que/que.component';
 import {HighscoreComponent} from './components/highscore/highscore.component';
 import {GameboardComponent} from './components/gameboard/gameboard.component';
@@ -60,7 +59,7 @@ import {ScoreService} from './shared/services/score/score.service';
 
 
     ],
-    providers: [AuthService, Title, WebsocketService, GameSocketService, GameServiceService,ScoreService],
+    providers: [AuthService, Title, WebsocketService, GameServiceService,ScoreService],
     bootstrap: [AppComponent]
 })
 

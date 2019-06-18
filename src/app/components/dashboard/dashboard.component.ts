@@ -1,36 +1,32 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import { AuthService } from "../../shared/services/authenticate/auth.service";
-import { Router } from "@angular/router";
-import {GameSocketService} from '../../shared/services/gameSocket/game-socket.service';
-import { HttpClient } from '@angular/common/http';
-import {MessageCardPlayed} from '../../shared/messages/MessageCardPlayed';
-import {MessagePlayerInQueue} from '../../shared/messages/MessagePlayerInQueue';
-import {MessageUpdateque} from '../../shared/messages/MessageUpdateque';
-import {MessageGameStarted} from '../../shared/messages/MessageGameStarted';
+import {Component, OnInit, NgZone} from '@angular/core';
+import {AuthService} from '../../shared/services/authenticate/auth.service';
+import {Router} from '@angular/router';
 import {MessageGetScores} from '../../shared/messages/MessageGetScores';
-import {PlayerScore} from '../../shared/models/Score';
 import {MessageScores} from '../../shared/messages/MessageScores';
 import {ScoreService} from '../../shared/services/score/score.service';
+import {Observer} from '../../shared/services/observer/Observer';
+import {EncapsulatingMessage} from '../../shared/messages/EncapsulatingMessage';
+import {Subject} from '../../shared/services/observer/Subject';
+import {WebsocketService} from '../../shared/services/websocket/websocket.service';
 
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
-
+export class DashboardComponent implements OnInit, Observer {
 
     private message;
+    private encapsulatingMessage: EncapsulatingMessage;
+    private subject: Subject;
 
+    constructor(public authService: AuthService, public router: Router, public ngZone: NgZone, public score: ScoreService, public ws: WebsocketService) {
 
-    constructor(
-        public authService: AuthService,
-        private ws: GameSocketService,
-        public router: Router,
-        public ngZone: NgZone,
-        public score:ScoreService
-    ) {this.ws.messages.subscribe(msg => {this.switchComponent(msg);});}
+        this.subject=ws;
+        ws.registerObserver(this)
+
+    }
 
     switchComponent(msg) {
         switch (msg.getMessageType) {
@@ -50,10 +46,14 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
     }
 
+    update(message: EncapsulatingMessage) {
+        // let encapsulatingMessage= message;
+        // this.encapsulatingMessage=encapsulatingMessage
+        // this.switchComponent(this.encapsulatingMessage)
+    }
 
-
-    gethiscors(){
+    gethiscors() {
         let message = new MessageGetScores();
-        this.ws.sendMsg(message);
+        this.ws.send(message);
     }
 }

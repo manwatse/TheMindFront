@@ -1,11 +1,12 @@
 export  class MessageCardPlayed {
 
-    private playerid:string;
+    private playerId:string;
     private cardPlayed:number;
 
 
     constructor(playerid: string, cardPlayed: number) {
-        this.playerid = playerid;
+        this.playerId = playerid;
         this.cardPlayed = cardPlayed;
     }
+
 }

@@ -1,13 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../shared/services/authenticate/auth.service';
 import {Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {ScoreService} from '../../shared/services/score/score.service';
 import {PlayerScore} from '../../shared/models/Score';
-import {MessageUpdateGame} from '../../shared/messages/MessageUpdateGame';
-import {MessageGetScores} from '../../shared/messages/MessageGetScores';
-import {MessageScores} from '../../shared/messages/MessageScores';
-import {GameSocketService} from '../../shared/services/gameSocket/game-socket.service';
+import {GameServiceService} from '../../shared/services/gameservice/game-service.service';
+import {WebsocketService} from '../../shared/services/websocket/websocket.service';
 
 @Component({
     selector: 'app-highscore',
@@ -17,27 +13,27 @@ import {GameSocketService} from '../../shared/services/gameSocket/game-socket.se
 export class HighscoreComponent implements OnInit {
 
     getscorelist(): PlayerScore[] {
-        return this._scorelist;
+        return this.scorelist;
     }
 
-    private _scorelist:PlayerScore[];
-    private  message;
+    private scorelist:PlayerScore[];
 
-    constructor(private auth: AuthService,private ws: GameSocketService, private router: Router, private http: HttpClient,public score:ScoreService) {
+
+    constructor(private ws: WebsocketService,private auth:AuthService,public router: Router,public game:GameServiceService) {
+
 
     }
 
     ngOnInit() {
-        this._scorelist=this.score.scoress;
 
     }
 
-    getHighscore() {
-        this.http.get('http://localhost/score:8091').subscribe(data => {
-            this.message= new MessageScores(JSON.parse(data.toString()))
-            this.score.scoress=this.message;
-        });
-
-    }
+    // getHighscore() {
+    //     this.http.get('http://localhost/score:8091').subscribe(data => {
+    //         this.message= new MessageScores(JSON.parse(data.toString()))
+    //         this.score.scoress=this.message;
+    //     });
+    //
+    // }
 
 }

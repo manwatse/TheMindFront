@@ -56,6 +56,11 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-10">
+                                    <tr *ngFor="let int of hand">
+                                        <div class="col-sm-70" flex style="height: 20px;margin-bottom: 5px;">Lowest card:
+                                            {{ int}}
+                                        </div>
+                                    </tr>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="inner-adjust">
