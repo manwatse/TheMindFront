@@ -31,10 +31,21 @@
     <!-- Main  -->
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
       <div class="inner-adjust">
-        <tbody *ngIf="getscorelist != null">
-        <tr *ngFor="let PlayerScore of getscorelist()">
+        <!--<tbody>-->
+        <!--<tr>-->
+          <!--<div>-->
+            <!--<P>PlayerID: test, score:10</P>-->
+            <!--<P>PlayerID: Mzn08P68YyT4ecysSjWg1sgBVcP2, score:1</P>-->
+            <!--<P>PlayerID: PM3ZVK5wPafXyZAoPBxOuhupJXa2, score:1</P>-->
+            <!--<P>PlayerID: 8VnKMNuZqwWhacIvrWm5ZJs92Dy2, score:0</P>-->
+          <!--</div>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+
+        <tbody *ngIf="scorelist != null">
+        <tr *ngFor="let PlayerScore of scorelist">
           <div class="col-sm-70" flex style="height: 20px;margin-bottom: 5px;">PlayerId:
-            {{ PlayerScore.playerId}}  Score: 0
+            {{ PlayerScore.playerId}},  Score: {{PlayerScore.score}}
           </div>
 
         </tr>
@@ -42,7 +53,7 @@
         </tbody>
 
           <li class="nav-item">
-            <button class="btn btn-primary" (click)="getHighscore()" style="height: 40px"> Refresh</button>
+            <button class="btn btn-primary" (click)="getScore()" style="height: 40px"> Refresh</button>
           </li>
 
 

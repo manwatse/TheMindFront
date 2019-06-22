@@ -17,6 +17,8 @@ export class GameServiceService {
     private _lifePoints:number;
     private _votes:number;
     private _numberOfPlayers:number;
+    private _gameWon:boolean;
+    private _level:number;
 
 
     getplayers():Player[] {
@@ -83,5 +85,21 @@ export class GameServiceService {
 
     set votes(value: number) {
         this._votes = value;
+    }
+
+    get gameWon(): boolean {
+        return this._gameWon;
+    }
+
+    set gameWon(value: boolean) {
+        this._gameWon = value;
+    }
+
+    get level(): number {
+        return this._level;
+    }
+
+    set level(value: number) {
+        this._level = value;
     }
 }

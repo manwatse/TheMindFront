@@ -9,6 +9,7 @@ export class MessageUpdateGame {
     private _gameId:number;
     private _Votes:number;
     private _lifePoints:number;
+    private _gameWon:boolean;
 
 
     constructor(obj) {
@@ -69,5 +70,13 @@ export class MessageUpdateGame {
 
     set lifePoints(value: number) {
         this._lifePoints = value;
+    }
+
+    get gameWon(): boolean {
+        return this._gameWon;
+    }
+
+    set gameWon(value: boolean) {
+        this._gameWon = value;
     }
 }

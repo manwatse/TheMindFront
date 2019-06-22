@@ -1,11 +1,12 @@
-export class PlayerScore{
+export class PlayerScoreDTO {
+
     public playerId:string;
-    public score:number;
+    private playerscore:number;
 
 
-    constructor(playerId: string, score: number) {
+    constructor(playerId: string, playerscore: number) {
         this.playerId = playerId;
-        this.score = score;
+        this.playerscore = playerscore;
     }
 
     get getplayerId(): string {
@@ -18,10 +19,11 @@ export class PlayerScore{
 
 
     get getplayerscore(): number {
-        return this.score;
+        return this.playerscore;
     }
 
     set setplayerscore(value: number) {
-        this.score = value;
+        this.playerscore = value;
     }
+
 }

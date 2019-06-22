@@ -53,14 +53,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" *ngIf="this.userScore as number">
+                    <div class="col-md-12">
+                        <div class="media">
+                            <div class="media-body">
+                                <P>Player score : <strong>{{this.userScore}}</strong></P>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/que" >
                         <i class="fas fa-user"></i>Game
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a  >
-                        <i class="fas fa-user" (click)="gethiscors()" style="height: 40px"> Highscore</i>
+                    <a class="nav-link" routerLink="/highscore" >
+                        <i class="fas fa-user"> Highscore</i>
                     </a>
                 </li>
 

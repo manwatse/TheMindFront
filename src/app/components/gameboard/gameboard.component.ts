@@ -11,6 +11,8 @@ import {EncapsulatingMessage} from '../../shared/messages/EncapsulatingMessage';
 import {Observer} from '../../shared/services/observer/Observer';
 import {MessageCardPlayed} from '../../shared/messages/MessageCardPlayed';
 import {WebsocketService} from '../../shared/services/websocket/websocket.service';
+import {ScoreService} from "../../shared/services/score/score.service";
+import {PlayerScoreDTO} from "../../shared/models/PlayerScoreDTO";
 
 @Component({
     selector: 'app-gameboard',
@@ -25,13 +27,13 @@ export class GameboardComponent implements OnInit,Observer {
     hand:number[]=[];
     lastPlayed: number;
     votes: number;
+    lives:number;
+    level:number;
 
 
-    constructor(private ws: WebsocketService,private auth:AuthService,public router: Router,public game:GameServiceService) {
+    constructor(public score:ScoreService,private ws: WebsocketService,private auth:AuthService,public router: Router,public game:GameServiceService) {
         this.subject=ws;
         ws.registerObserver(this)
-
-
     }
 
     ngOnInit() {
@@ -53,6 +55,12 @@ export class GameboardComponent implements OnInit,Observer {
         let encapsulatingMessage= message;
         this.encapsulatingMessage=encapsulatingMessage
         this.switchComponent(this.encapsulatingMessage)
+
+        if (this.game.gameWon){
+            this.score.setPlayerScore(new PlayerScoreDTO(this.auth.user.uid,this.score.userScore))
+            this.router.navigate(['/dashboard'])
+
+        }
     }
 
     switchComponent(msg) {
@@ -61,10 +69,7 @@ export class GameboardComponent implements OnInit,Observer {
                 this.message = new MessageUpdateGame(JSON.parse(msg.getMessageData));
                     this.updateService(this.message);
                     this.updateGame();
-
-
                 break;
-
             default:
                 console.log('rip ' + msg.getMessageType);
                 break;
@@ -82,12 +87,18 @@ export class GameboardComponent implements OnInit,Observer {
         this.players=this.game._players;
         this.hand=this.game.hand;
         this.votes=this.game.votes;
+        this.lives=this.game.lifePoints;
+        this.level=this.game.level;
+
+
     }
     updateService(message:MessageUpdateGame){
         this.game.votes=message.Votes;
         this.game._players=message.players;
         this.game.lastPlayeds= message.lastPlayed;
         this.game.lifePoints=message.lifePoints;
+        this.game.gameWon=message.gameWon;
+        this.game.level=message.level;
 
         console.log(this.message.lastPlayed)
 

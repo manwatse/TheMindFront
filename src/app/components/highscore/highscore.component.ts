@@ -4,6 +4,8 @@ import {Router} from '@angular/router';
 import {PlayerScore} from '../../shared/models/Score';
 import {GameServiceService} from '../../shared/services/gameservice/game-service.service';
 import {WebsocketService} from '../../shared/services/websocket/websocket.service';
+import {ScoreService} from "../../shared/services/score/score.service";
+import {PlayerScoreResponse} from "../../shared/models/PlayerScoreResponse";
 
 @Component({
     selector: 'app-highscore',
@@ -12,28 +14,39 @@ import {WebsocketService} from '../../shared/services/websocket/websocket.servic
 })
 export class HighscoreComponent implements OnInit {
 
-    getscorelist(): PlayerScore[] {
-        return this.scorelist;
-    }
 
-    private scorelist:PlayerScore[];
+    restresponse:PlayerScoreResponse;
+    scorelist:PlayerScore[];
 
-
-    constructor(private ws: WebsocketService,private auth:AuthService,public router: Router,public game:GameServiceService) {
+    constructor(public score:ScoreService,private auth:AuthService,public router: Router,public game:GameServiceService) {
 
 
     }
 
     ngOnInit() {
+        this.getScore();
+
 
     }
+    getScore(){
+        this.score.getHighScore().subscribe(data=>{
 
-    // getHighscore() {
-    //     this.http.get('http://localhost/score:8091').subscribe(data => {
-    //         this.message= new MessageScores(JSON.parse(data.toString()))
-    //         this.score.scoress=this.message;
-    //     });
-    //
-    // }
+            this.restresponse=data;
+            this.scorelist= this.restresponse.scores;
+            this.scorelist.sort(function(a, b){
+                return b.score-a.score;
+            })
+            console.log(this.restresponse.scores)
 
+        })
+    }
+
+
+
+
+    //region
+    checkScore(){
+        this.getScore()
+    }
+    //endregion
 }

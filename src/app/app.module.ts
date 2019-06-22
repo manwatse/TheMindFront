@@ -2,10 +2,7 @@ import {BrowserModule, Title} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 // Reactive Form
-
 import {ReactiveFormsModule} from '@angular/forms';
-
-
 // App routing modules
 import {AppRoutingModule} from './shared/routing/app-routing.module';
 
@@ -16,6 +13,9 @@ import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {ForgotPasswordComponent} from './components/forgot-password/forgot-password.component';
 import {VerifyEmailComponent} from './components/verify-email/verify-email.component';
+import {QueComponent} from './components/que/que.component';
+import {HighscoreComponent} from './components/highscore/highscore.component';
+import {GameboardComponent} from './components/gameboard/gameboard.component';
 
 // Firebase services + enviorment module
 import {AngularFireModule} from '@angular/fire';
@@ -27,9 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
 // Auth service
 import {AuthService} from './shared/services/authenticate/auth.service';
 import {WebsocketService} from './shared/services/websocket/websocket.service';
-import {QueComponent} from './components/que/que.component';
-import {HighscoreComponent} from './components/highscore/highscore.component';
-import {GameboardComponent} from './components/gameboard/gameboard.component';
 import {GameServiceService} from './shared/services/gameservice/game-service.service';
 import {ScoreService} from './shared/services/score/score.service';
 
@@ -54,7 +51,8 @@ import {ScoreService} from './shared/services/score/score.service';
         AngularFireAuthModule,
         AngularFirestoreModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+
 
 
 
